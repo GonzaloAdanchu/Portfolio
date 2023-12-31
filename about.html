@@ -85,7 +85,7 @@
 					<div class="col-md-6 col-md-offset-3">
 						<form id="contact-form">
 							<div class="form-group">
-								<label for="name">NOMBRE:</label>
+								<label for="name">NOMBRES:</label>
 								<input type="text" class="form-control" id="name" name="name" required>
 							</div>
 							<div class="form-group">
@@ -112,6 +112,7 @@
 									<option value="6">6 cuotas</option>
 									<option value="12">12 cuotas</option>
 								</select>
+								<div id="mensaje-envio" class="text-center"></div>
 							</div>
 							<button type="button" id="submitBtn" class="btn btn-primary">Enviar Consulta</button>
 						</form>
@@ -143,24 +144,31 @@
 	<script>
 	
 	
-		$(document).ready(function () {
-			$("#submitBtn").click(function () {
-				var formData = $("#contact-form").serialize();
-				$.ajax({
-					type: "POST",
-					url: "process_form.php", // Reemplaza con la URL real de tu script del lado del servidor
-					data: formData,
-					success: function (response) {
-						// Maneja la respuesta exitosa
-						alert(response);
-					},
-					error: function (error) {
-						// Maneja el error
-						alert("Error submitting the form.");
-					}
-				});
-			});
-		});
+	$(document).ready(function () {
+    $("#submitBtn").click(function () {
+        var formData = $("adanchugonzalo@hotmail.com").serialize();
+        // Agrega el mensaje "Procesando datos, espere ser contactado"
+        $("#mensaje-envio").text("Procesando datos, espere ser contactado");
+
+        $.ajax({
+            type: "POST",
+            url: "process_form.php", // Reemplaza con la URL real de tu script del lado del servidor
+            data: formData,
+            success: function (response) {
+                // Maneja la respuesta exitosa
+                // Puedes mostrar la respuesta o realizar otras acciones necesarias
+                // Por ejemplo, puedes agregar la respuesta al elemento mensaje-envio
+                $("#mensaje-envio").text(response);
+            },
+            error: function (error) {
+                // Maneja el error
+                // Puedes mostrar un mensaje de error en el elemento mensaje-envio
+                $("#mensaje-envio").text("Error submitting the form.");
+            }
+        });
+    });
+});
+
 	</script>
 	
 	</body>
