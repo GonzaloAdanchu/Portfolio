@@ -146,7 +146,7 @@
 	
 	$(document).ready(function () {
     $("#submitBtn").click(function () {
-        var formData = $("adanchugonzalo@hotmail.com").serialize();
+        var formData = $("#contact-form").serialize();
         // Agrega el mensaje "Procesando datos, espere ser contactado"
         $("#mensaje-envio").text("Procesando datos, espere ser contactado");
 
