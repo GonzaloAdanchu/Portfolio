@@ -142,34 +142,24 @@
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
 	<script>
-	
-	
-	$(document).ready(function () {
-    $("#submitBtn").click(function () {
-        var formData = $("#contact-form").serialize();
-        // Agrega el mensaje "Procesando datos, espere ser contactado"
-        $("#mensaje-envio").text("Procesando datos, espere ser contactado");
-
-        $.ajax({
-            type: "POST",
-            url: "process_form.php", // Reemplaza con la URL real de tu script del lado del servidor
-            data: formData,
-            success: function (response) {
-                // Maneja la respuesta exitosa
-                // Puedes mostrar la respuesta o realizar otras acciones necesarias
-                // Por ejemplo, puedes agregar la respuesta al elemento mensaje-envio
-                $("#mensaje-envio").text(response);
-            },
-            error: function (error) {
-                // Maneja el error
-                // Puedes mostrar un mensaje de error en el elemento mensaje-envio
-                $("#mensaje-envio").text("Error submitting the form.");
-            }
-        });
-    });
-});
-
-	</script>
+		$(document).ready(function () {
+			$("#submitBtn").click(function () {
+				$.ajax({
+					type: "POST",
+					url: "sendmail.php",  // Change this to the correct path of your PHP file
+					data: $("#contact-form").serialize(),
+					success: function (response) {
+						if (response === "success") {
+							$("#mensaje-envio").html("Consulta enviada con éxito.");
+							$("#contact-form")[0].reset();
+						} else {
+							$("#mensaje-envio").html("Error al enviar la consulta. Inténtelo de nuevo más tarde.");
+						}
+					}
+				});
+			});
+		});
+		</script>
 	
 	</body>
 </html>
