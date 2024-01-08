@@ -114,13 +114,18 @@
 								</select>
 								<div id="mensaje-envio" class="text-center"></div>
 							</div>
-							<button type="button" id="submitBtn" class="btn btn-primary">Enviar Consulta</button>
+							<form id="contact-form" action="send_form.php" method="post">
+								<!-- ... your existing form fields ... -->
+								<button type="submit" id="submitBtn" class="btn btn-primary">ENVIAR CONSULTA</button>
 						</form>
 						<br>
+						
+						</form>
 					</div>
 					
 				</div>
 			</div>
+			
 	</div>
 
 	<!-- jQuery -->
@@ -141,25 +146,7 @@
 	
 	<!-- MAIN JS -->
 	<script src="js/main.js"></script>
-	<script>
-		$(document).ready(function () {
-			$("#submitBtn").click(function () {
-				$.ajax({
-					type: "POST",
-					url: "sendmail.php",  // Change this to the correct path of your PHP file
-					data: $("#contact-form").serialize(),
-					success: function (response) {
-						if (response === "success") {
-							$("#mensaje-envio").html("Consulta enviada con éxito.");
-							$("#contact-form")[0].reset();
-						} else {
-							$("#mensaje-envio").html("Error al enviar la consulta. Inténtelo de nuevo más tarde.");
-						}
-					}
-				});
-			});
-		});
-		</script>
+	
 	
 	</body>
 </html>
